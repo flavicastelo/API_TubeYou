@@ -29,18 +29,18 @@ Content-Type: application/json
     "url": "video2"
 }
 
+# Users
 ###
 POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "name": "Usuario1",
-    "channel": "Usuario1",
-    "email": "Usuario1",
-    "password": "Usuario1"
+    "name": "Usuario4",
+    "channel": "Usuario4",
+    "email": "Usuario4",
+    "password": "Usuario4"
 }
 
-# Users
 ###
 GET http://localhost:3000/api/users
 
@@ -48,7 +48,7 @@ GET http://localhost:3000/api/users
 GET http://localhost:3000/api/users/63c68d383560f3793ff33d61
 
 ###
-DELETE http://localhost:3000/api/users/63c556b59bb732ae7eb3d335
+DELETE http://localhost:3000/api/users/63c6af4f6a44e0a421cc259d
 ###
 
 PUT http://localhost:3000/api/users/63c556ee4da6f17216632a33
@@ -59,4 +59,14 @@ Content-Type: application/json
     "channel": "Mudei",
     "email": "Mudei",
     "password": "Mudei"
+}
+
+# Login
+###
+POST http://localhost:3000/api/login
+Content-Type: application/json
+
+{
+    "email": "Usuario4",
+    "password": "Usuario3"
 }

@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const { videosSchema } = require("./Videos");
+const { videosSchema } = require("./Video");
 
 const { Schema } = mongoose;
 
-const usersSchema = new Schema({
+const userSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -26,6 +26,6 @@ const usersSchema = new Schema({
     },
 }, { timestamps: true });
 
-const Users = mongoose.model("Users", usersSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = {Users, usersSchema};
+module.exports = {User, userSchema};
