@@ -1,6 +1,6 @@
 const {User: UserModel, User} = require("../models/User");
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+
 
 const userController = {
     //req: requisicao
@@ -24,7 +24,7 @@ const userController = {
 
             const userExists = await UserModel.findOne({ 'email': email});
             if(userExists){
-                return res.status(422).json({msg: "Esse e-mail já está cadastrado, por favor, tente outro."});
+                return res.status(404).json({msg: "Esse e-mail já está cadastrado, por favor, tente outro."});
             }
 
             const salt = await bcrypt.genSalt(12);
@@ -60,7 +60,7 @@ const userController = {
                 return;
             }
 
-            res.json(user);
+            res.status(200).json(user);
         } catch (error) {
             console.log(error);
         }

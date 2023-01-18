@@ -35,10 +35,10 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-    "name": "Usuario4",
-    "channel": "Usuario4",
-    "email": "Usuario4",
-    "password": "Usuario4"
+    "name": "Usuario5",
+    "channel": "Usuario5",
+    "email": "Usuario5",
+    "password": "Usuario5"
 }
 
 ###
@@ -68,5 +68,5 @@ Content-Type: application/json
 
 {
     "email": "Usuario4",
-    "password": "Usuario3"
+    "password": "Usuario4"
 }
