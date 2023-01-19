@@ -1,4 +1,4 @@
-const { Videos: VideosModel, Videos } = require("../models/Videos");
+const { Videos: VideosModel, Videos } = require("../models/Video");
 
 const videosController = {
     create: async (req, res) => {

@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
-const { videosSchema } = require("./Videos");
+const { videosSchema } = require("./Video");
 
 const { Schema } = mongoose;
 
-const usersSchema = new Schema({
+const userSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -12,20 +12,23 @@ const usersSchema = new Schema({
     channel: {
         type: String,
         required: true,
+        unique: true,
     },
     email: {
         type: String,
         required: true,
+        unique: true,
     },
     password: {
         type: String,
         required: true,
+        select: false,
     },
     videos: {
         type: [videosSchema],
     },
 }, { timestamps: true });
 
-const Users = mongoose.model("Users", usersSchema);
+const User = mongoose.model("User", userSchema);
 
-module.exports = {Users, usersSchema};
+module.exports = {User, userSchema};

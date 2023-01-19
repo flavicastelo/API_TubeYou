@@ -1,55 +1,72 @@
-const {Users: UsersModel} = require("../models/Users");
+const { User: UserModel, User } = require("../models/User");
+const bcrypt = require('bcrypt');
 
-const usersController = {
+
+const userController = {
     //req: requisicao
     //res: result
-    create:  async(req, res) =>  {
-        try{
-            const users = {
-                name: req.body.name,
-                channel: req.body.channel,
-                email: req.body.email,
-                password: req.body.password,
-                videos: req.body.videos,
-            };
+    create: async (req, res) => {
+        try {
+            const { name, channel, email, password, videos } = req.body;
 
-            if(!users.name){
-                return res.status(422).json({msg: 'Nome obrigatório!'});
+            if (!name) {
+                return res.status(422).json({ msg: 'Nome obrigatório!' });
             }
-            if(!users.channel){
-                return res.status(422).json({msg: 'Nome do Canal obrigatório!'});
+            if (!channel) {
+                return res.status(422).json({ msg: 'Nome do Canal obrigatório!' });
             }
-            if(!users.email){
-                return res.status(422).json({msg: 'E-mail obrigatório!'});
+            if (!email) {
+                return res.status(422).json({ msg: 'E-mail obrigatório!' });
             }
-            if(!users.password){
-                return res.status(422).json({msg: 'Senha obrigatório!'});
+            if (!password) {
+                return res.status(422).json({ msg: 'Senha obrigatório!' });
             }
-            const response = await UsersModel.create(users);
-            res.status(201).json({response, msg: "Usuário criado com sucesso!"});
-        }catch (error) {
-            console.log(`Erro Controller: ${error}`);
+
+            const userExists = await UserModel.findOne({ 'email': email });
+            if (userExists) {
+                return res.status(422).json({ msg: "Esse e-mail já está cadastrado, por favor, tente outro." });
+            }
+
+            const channelExists = await UserModel.findOne({ 'channel': channel });
+            if (channelExists) {
+                return res.status(422).json({ msg: "Esse nome de canal já está cadastrado, por favor, tente outro." });
+            }
+
+            const salt = await bcrypt.genSalt(12);
+            const passwordHash = await bcrypt.hash(password, salt);
+            const user = new UserModel({
+                name,
+                channel,
+                email,
+                password: passwordHash,
+                videos,
+            });
+            const response = await UserModel.create(user);
+            res.status(201).json({ response, msg: "Usuário criado com sucesso!" });
+        } catch (error) {
+            console.log(`Erro: ${error}`);
         }
     },
     getAll: async (req, res) => {
         try {
-            const users = await UsersModel.find();
-            res.json(users);
+            const user = await UserModel.find();
+            res.json(user);
         } catch (error) {
             console.log(error);
         }
     },
-    get: async (req, res) => {
+    async getId(req, res) {
+
         try {
             const id = req.params.id;
-            const users = await UsersModel.findById(id);
+            const user = await UserModel.findById(id);
 
-            if (!users) {
+            if (!user) {
                 res.status(404).json({ msg: "Usuário não encontrado!" });
                 return;
             }
 
-            res.json(users);
+            res.status(200).json(user);
         } catch (error) {
             console.log(error);
         }
@@ -57,22 +74,22 @@ const usersController = {
     delete: async (req, res) => {
         try {
             const id = req.params.id;
-            const users = await UsersModel.findById(id);
+            const user = await UserModel.findById(id);
 
-            if (!users) {
+            if (!user) {
                 res.status(404).json({ msg: "Usuário não encontrado!" });
                 return;
             }
 
-            const deletedUsers = await UsersModel.findByIdAndDelete(id);
-            res.status(200).json({deletedUsers, msg: "Usuário excluído com sucesso!"});
+            const deletedUser = await UserModel.findByIdAndDelete(id);
+            res.status(200).json({ deletedUser, msg: "Usuário excluído com sucesso!" });
         } catch (error) {
             console.log(error);
         }
     },
     update: async (req, res) => {
         const id = req.params.id;
-        const users = {
+        const user = {
             name: req.body.name,
             channel: req.body.channel,
             email: req.body.email,
@@ -80,14 +97,14 @@ const usersController = {
             videos: req.body.videos,
         };
 
-        const updateUsers = await UsersModel.findByIdAndUpdate(id, users);
-        if (!updateUsers) {
+        const updateUser = await UserModel.findByIdAndUpdate(id, user);
+        if (!updateUser) {
             res.status(404).json({ msg: "Usuário não encontrado!" });
             return;
         }
-        res.status(200).json({users, msg: "Usuário editado com sucesso!"});
+        res.status(200).json({ user, msg: "Usuário editado com sucesso!" });
 
     }
 };
 
-module.exports = usersController;
+module.exports = userController;

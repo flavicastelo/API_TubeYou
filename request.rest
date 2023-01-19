@@ -13,14 +13,14 @@ Content-Type: application/json
 GET http://localhost:3000/api/videos
 
 ###
-GET http://localhost:3000/api/videos/63c5574e4da6f17216632a35
+GET http://localhost:3000/api/videos/63c6ad7b66af7a3aeca9b097
 
 ###
-DELETE http://localhost:3000/api/videos/63c5574e4da6f17216632a35
+DELETE http://localhost:3000/api/videos/delete/63c6ad7b66af7a3aeca9b097
 
 ###
 
-PUT http://localhost:3000/api/videos/63c58b7dd6a9648fd0751fe5
+PUT http://localhost:3000/api/videos/update/63c6ad7b66af7a3aeca9b097
 Content-Type: application/json
 
 {
@@ -29,29 +29,29 @@ Content-Type: application/json
     "url": "video2"
 }
 
+# Users
 ###
-POST http://localhost:3000/api/users
+POST http://localhost:3000/api/register
 Content-Type: application/json
 
 {
-    "name": "Usuario1",
-    "channel": "Usuario1",
-    "email": "Usuario1",
-    "password": "Usuario1"
+    "name": "Usuario5",
+    "channel": "Usuario5",
+    "email": "Usuario8",
+    "password": "Usuario5"
 }
 
-# Users
 ###
 GET http://localhost:3000/api/users
 
 ###
-GET http://localhost:3000/api/users/63c68d383560f3793ff33d61
+GET http://localhost:3000/api/users/63c6b0fd92ac32837c84fedc
 
 ###
-DELETE http://localhost:3000/api/users/63c556b59bb732ae7eb3d335
+DELETE http://localhost:3000/api/users/delete/63c6b0fd92ac32837c84fedc
 ###
 
-PUT http://localhost:3000/api/users/63c556ee4da6f17216632a33
+PUT http://localhost:3000/api/users/update/63c6b0fd92ac32837c84fedc
 Content-Type: application/json
 
 {
@@ -59,4 +59,14 @@ Content-Type: application/json
     "channel": "Mudei",
     "email": "Mudei",
     "password": "Mudei"
+}
+
+# Login
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "Usuario3",
+    "password": "Usuario2"
 }
