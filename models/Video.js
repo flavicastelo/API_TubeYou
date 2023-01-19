@@ -14,6 +14,19 @@ const videosSchema = new Schema({
     url: {
         type: String,
         required: true
+    },
+    like: {
+        type: Number,
+    },
+    unlike:{
+        type: Number,
+    },
+    thumbnail: {
+        type: String,
+        required: true,
+    },
+    views: {
+        type: Number,
     }
 }, { timestamps: true } //salva a data de criacao e atualizacao
 );
