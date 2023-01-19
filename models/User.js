@@ -12,6 +12,7 @@ const userSchema = new Schema({
     channel: {
         type: String,
         required: true,
+        unique: true,
     },
     email: {
         type: String,

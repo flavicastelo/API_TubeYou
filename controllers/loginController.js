@@ -17,10 +17,10 @@ const loginController = {
             if (!password) {
                 return res.status(422).json({ msg: 'Senha obrigatório!' });
             }
+            
             const user = await UserModel.findOne({ 'email': email}).select("+password");
-            console.log(user);
-            const userExists = await LoginModel.findOne({ 'email': email});
-            if(!userExists){
+
+            if(!user){
                 return res.status(422).json({msg: "Usuário não encontrado!."});
             }
 
