@@ -12,16 +12,16 @@ const loginController = {
         try {
             
             if (!email) {
-                return res.status(422).json({ msg: 'E-mail obrigatório!' });
+                return res.status(400).json({ msg: 'E-mail obrigatório!' });
             }
             if (!password) {
-                return res.status(422).json({ msg: 'Senha obrigatório!' });
+                return res.status(400).json({ msg: 'Senha obrigatório!' });
             }
             
             const user = await UserModel.findOne({ 'email': email}).select("+password");
 
             if(!user){
-                return res.status(422).json({msg: "Usuário não encontrado!."});
+                return res.status(404).json({msg: "Usuário não encontrado!."});
             }
 
             const salt = await bcrypt.genSalt(12);
