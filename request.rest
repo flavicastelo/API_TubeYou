@@ -35,12 +35,11 @@ POST http://localhost:3000/api/register
 Content-Type: application/json
 
 {
-    "name": "Usuario5",
-    "channel": "Usuario5",
-    "email": "Usuario8",
-    "password": "Usuario5"
+    "name": "teste",
+    "channel": "teste",
+    "email": "teste",
+    "password": "teste"
 }
-
 ###
 GET http://localhost:3000/api/users
 
@@ -67,6 +66,6 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "Usuario3",
-    "password": "Usuario2"
+    "email": "Usuario4",
+    "password": "Usuario4"
 }
