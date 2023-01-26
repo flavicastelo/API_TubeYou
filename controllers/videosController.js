@@ -5,8 +5,14 @@ const videosController = {
         try {
             const videos = {
                 title: req.body.title,
-                description: req.body.description,
                 url: req.body.url,
+                description: req.body.description,
+                thumbnail: req.body.thumbnail,
+                like: req.body.like,
+                unlike: req.body.unlike,
+                views: req.body.views,
+                idUser: req.body.idUser,
+                channel: req.body.channel,
             };
 
             const response = await VideosModel.create(videos);
@@ -49,7 +55,7 @@ const videosController = {
             }
 
             const deletedVideo = await VideosModel.findByIdAndDelete(id);
-            res.status(200).json({deletedVideo, msg: "Vídeo excluído com sucesso!"});
+            res.status(200).json({ deletedVideo, msg: "Vídeo excluído com sucesso!" });
         } catch (error) {
             console.log(error);
         }
@@ -58,8 +64,14 @@ const videosController = {
         const id = req.params.id;
         const videos = {
             title: req.body.title,
-            description: req.body.description,
             url: req.body.url,
+            description: req.body.description,
+            thumbnail: req.body.thumbnail,
+            like: req.body.like,
+            unlike: req.body.unlike,
+            views: req.body.views,
+            idUser: req.body.idUser,
+            channel: req.body.channel,
         };
 
         const updateVideos = await VideosModel.findByIdAndUpdate(id, videos);
@@ -67,7 +79,7 @@ const videosController = {
             res.status(404).json({ msg: "Vídeo não encontrado!" });
             return;
         }
-        res.status(200).json({videos, msg: "Vídeo editado com sucesso!"});
+        res.status(200).json({ videos, msg: "Vídeo editado com sucesso!" });
 
     }
 };

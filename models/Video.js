@@ -7,13 +7,17 @@ const videosSchema = new Schema({
         type: String,
         required: true
     },
+    url: {
+        type: String,
+        required: true
+    },
     description: {
         type: String,
         required: true
     },
-    url: {
+    thumbnail: {
         type: String,
-        required: true
+        required: true,
     },
     like: {
         type: Number,
@@ -21,12 +25,14 @@ const videosSchema = new Schema({
     unlike:{
         type: Number,
     },
-    thumbnail: {
-        type: String,
-        required: true,
-    },
     views: {
         type: Number,
+    },
+    idUser: {
+        type: String,
+    },
+    channel: {
+        type: String,
     }
 }, { timestamps: true } //salva a data de criacao e atualizacao
 );

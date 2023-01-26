@@ -3,9 +3,11 @@ POST http://localhost:3000/api/videos
 Content-Type: application/json
 
 {
-    "title": "video2",
-    "description": "video2",
-    "url": "video2"
+    "title": "oi",
+    "description": "oi",
+    "url": "oi",
+    "thumbnail": "oi",
+    "idUser": "oi"
 }
 
 
@@ -44,7 +46,7 @@ Content-Type: application/json
 GET http://localhost:3000/api/users
 
 ###
-GET http://localhost:3000/api/users/63c6b0fd92ac32837c84fedc
+GET http://localhost:3000/api/users/63c6bee8e62be258acf2ad39
 
 ###
 DELETE http://localhost:3000/api/users/delete/63c6b0fd92ac32837c84fedc
@@ -57,7 +59,9 @@ Content-Type: application/json
     "name": "Mudei",
     "channel": "Mudei",
     "email": "Mudei",
-    "password": "Mudei"
+    "password": "Mudei",
+
+    
 }
 
 # Login
@@ -66,6 +70,10 @@ POST http://localhost:3000/api/auth/login
 Content-Type: application/json
 
 {
-    "email": "Usuario4",
-    "password": "Usuario4"
+    "email": "Usuario5",
+    "password": "Usuario5"
 }
+
+# 63c6e1c926963eeac42f0b4b
+#63d2b986c42aa2bf1e5e5df6
+#63c6e1c926963eeac42f0b4b
