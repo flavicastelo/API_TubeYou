@@ -24,6 +24,9 @@ const userSchema = new Schema({
         required: true,
         select: false,
     },
+    photo:{
+        type: String,
+    },
     videos: {
         type: [videosSchema],
     },

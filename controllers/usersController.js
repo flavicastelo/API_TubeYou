@@ -7,7 +7,7 @@ const userController = {
     //res: result
     create: async (req, res) => {
         try {
-            const { name, channel, email, password, videos } = req.body;
+            const { name, channel, email, password, photo, videos } = req.body;
 
             if (!name) {
                 return res.status(422).json({ msg: 'Nome obrigatório!' });
@@ -39,6 +39,7 @@ const userController = {
                 channel,
                 email,
                 password: passwordHash,
+                photo,
                 videos,
             });
             const response = await UserModel.create(user);
@@ -94,6 +95,7 @@ const userController = {
             channel: req.body.channel,
             email: req.body.email,
             password: req.body.password,
+            photo: req.body.photo,
             videos: req.body.videos,
         };
 

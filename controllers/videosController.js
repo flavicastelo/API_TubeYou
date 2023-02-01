@@ -62,16 +62,17 @@ const videosController = {
     },
     update: async (req, res) => {
         const id = req.params.id;
+        const videosFind = await VideosModel.findById(id);
         const videos = {
-            title: req.body.title,
-            url: req.body.url,
-            description: req.body.description,
-            thumbnail: req.body.thumbnail,
-            like: req.body.like,
-            unlike: req.body.unlike,
-            views: req.body.views,
-            idUser: req.body.idUser,
-            channel: req.body.channel,
+            title: req.body.title || videosFind.title,
+            url: req.body.url || videosFind.url,
+            description: req.body.description || videosFind.description,
+            thumbnail: req.body.thumbnail || videosFind.thumbnail,
+            like: req.body.like || videosFind.like,
+            unlike: req.body.unlike || videosFind.unlike,
+            views: req.body.views || videosFind.views,
+            idUser: req.body.idUser || videosFind.idUser,
+            channel: req.body.channel || videosFind.channel,
         };
 
         const updateVideos = await VideosModel.findByIdAndUpdate(id, videos);
