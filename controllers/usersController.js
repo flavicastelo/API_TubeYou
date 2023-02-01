@@ -90,12 +90,13 @@ const userController = {
     },
     update: async (req, res) => {
         const id = req.params.id;
+        const userFind = await UserModel.findById(id);
         const user = {
-            name: req.body.name,
-            channel: req.body.channel,
-            email: req.body.email,
-            password: req.body.password,
-            photo: req.body.photo,
+            name: req.body.name || userFind.name,
+            channel: req.body.channel || userFind.channel,
+            email: req.body.email || userFind.email,
+            password: req.body.password || userFind.password,
+            photo: req.body.photo  || userFind.photo,
             videos: req.body.videos,
         };
 
